@@ -1,39 +1,28 @@
-// function openBoxOne(){
-//     let modBox = document.getElementById("modBox1")
-//     let body = document.getElementsByTagName("body")[0]
+var log = console.log
 
-//     modBox.style.display = "block";
-//     body.style.overflowY = "hidden";
-// }
-
-// function closeBoxOne(){
-//     let modBox = document.getElementById("modBox1")
-//     let body = document.getElementsByTagName("body")[0]
-    
-    
-//     modBox.style.display = "none";
-//     body.style.overflowY = "inherit";
-// }
-
-
-var modalBg = document.getElementById("modBox1");
-var modalContent = document.getElementsByClassName("modal-wrapper")[0];
+var id = document.getElementById.bind(document);
+var clas = document.getElementsByClassName.bind(document);
+var tag = document.getElementsByClassName.bind(document);
 var body = document.getElementsByTagName("body")[0];
-// var trigger = document.querySelector(".trigger");
-// var closeButton = document.querySelector(".close-button");
 
-function toggleModal() {
-    modalBg.classList.toggle("show-modal-bg");
+// var buttons = document.getElementsByTagName("button")
+// for (let i = 0; i < buttons.length; i++) {
+//     buttons[i].addEventListener("click", toggleModal);
+// }
+
+function toggleModal(modBoxSel){
+    var modal = id(modBoxSel);
+    var modalContent = document.getElementById(modBoxSel).getElementsByClassName("modal-wrapper")[0];
+
+
+    modal.classList.toggle("show-modal-bg");
     modalContent.classList.toggle("show-modal-content");
-    body.classList.toggle("lock-body")
+    body.classList.toggle("lock-body");
+
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            toggleModal(modal.id);
+        }
+    });
 }
 
-function windowOnClick(event) {
-    if (event.target === modalBg) {
-        toggleModal();
-    }
-}
-
-// trigger.addEventListener("click", toggleModal);
-// closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
